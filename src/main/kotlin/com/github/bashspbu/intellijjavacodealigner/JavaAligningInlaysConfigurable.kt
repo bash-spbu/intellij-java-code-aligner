@@ -2,6 +2,7 @@
 
 package com.github.bashspbu.intellijjavacodealigner
 
+import com.github.bashspbu.intellijjavacodealigner.util.myIntTextField
 import com.intellij.codeInsight.hints.ChangeListener
 import com.intellij.codeInsight.hints.ImmediateConfigurable
 import com.intellij.ui.ContextHelpLabel
@@ -9,9 +10,9 @@ import com.intellij.ui.DocumentAdapter
 import com.intellij.ui.EnumComboBoxModel
 import com.intellij.ui.layout.Row
 import com.intellij.ui.layout.panel
-import kotlin.reflect.KMutableProperty0
 import javax.swing.JComponent
 import javax.swing.event.DocumentEvent
+import kotlin.reflect.KMutableProperty0
 
 
 class JavaAligningInlaysConfigurable(private val settings: JavaAligningInlaysSettings) : ImmediateConfigurable {
@@ -77,7 +78,7 @@ class JavaAligningInlaysConfigurable(private val settings: JavaAligningInlaysSet
     private fun Row.maxColumnLengthIntField(labelName: String, listener: ChangeListener, settingsProperty: KMutableProperty0<Int>) {
         row {
             label(labelName)
-            intTextField(settingsProperty, range = 5..1000)
+            myIntTextField(settingsProperty, range = 5..1000)
                 .component
                 .let { intTextField ->
                     intTextField.document.addDocumentListener(object : DocumentAdapter() {

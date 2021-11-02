@@ -1,6 +1,6 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# intellij-java-code-aligner Changelog
+# Java Code Aligner Changelog
 
 ## [Unreleased]
 ### Added
