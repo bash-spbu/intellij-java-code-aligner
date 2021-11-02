@@ -1,18 +1,53 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.bashspbu.intellijjavacodealigner</id>
-    <name>intellij-java-code-aligner</name>
-    <vendor>bash-spbu</vendor>
+    <name>Java Code Aligner</name>
+    <version>1.0.0</version>
+    <vendor email="bash.spbu@gmail.com" url="https://github.com/bash-spbu/intellij-java-code-aligner">
+        Alexander Bashkirov
+    </vendor>
+
+    <description>
+        <![CDATA[
+    Provides displaying the Java code as aligned horizontally in columns without actual formatting of the code.
+
+    <p>It mainly serves for <i>increasing code readability</i> and <i>reducing tension</i>
+    when reading dozens of tightly placed code lines with different elements.</p>
+
+    <p>More formally the plugin provides:</p>
+    <ul>
+      <li>alignment of consecutive fields, local variables and params in
+      columns of annotations, modifiers, types, names, initializers;</li>
+      <li>alignment of consecutive assignments by the equal sign;</li>
+      <li>pretty rich set of alignment settings in <code>File | Settings | Editor | Inlay Hints | Java | Java Code Aligner</code>.</li>
+    </ul>
+
+    <p>From the technical side, plugin works by adding invisible inlay hints (like the ones shown as parameter names for method calls),
+    which can be made visible via <code>Enable debug mode</code> in settings above.</p>
+
+    <p>Additionally, the plugin provides <b>folding of explicit types</b> to <code>var</code> and <code>final var</code> for local
+    variable declarations, which can be enabled in <code>File | Settings | Editor | General | Code Folding | Java Code Aligner</code>.</p>
+    ]]>
+    </description>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
+
+    <resource-bundle>messages.OurBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.bashspbu.intellijjavacodealigner.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.bashspbu.intellijjavacodealigner.services.MyProjectService"/>
-    </extensions>
+        <codeInsight.inlayProvider
+                language="JAVA"
+                implementationClass="com.github.bashspbu.intellijjavacodealigner.JavaAligningInlaysProvider"/>
 
-    <applicationListeners>
-        <listener class="com.github.bashspbu.intellijjavacodealigner.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+        <lang.foldingBuilder
+                language="JAVA"
+                implementationClass="com.github.bashspbu.intellijjavacodealigner.folding.LocalVariableTypesFoldingBuilder"/>
+
+        <codeFoldingOptionsProvider
+                instance="com.github.bashspbu.intellijjavacodealigner.folding.LocalVariableTypesFoldingOptionsProvider"/>
+
+        <applicationService
+                serviceImplementation="com.github.bashspbu.intellijjavacodealigner.folding.LocalVariableTypesFoldingSettings"/>
+    </extensions>
 </idea-plugin>

@@ -59,6 +59,7 @@ tasks {
         }
         withType<KotlinCompile> {
             kotlinOptions.jvmTarget = it
+            kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=all")
         }
     }
 
@@ -103,6 +104,7 @@ tasks {
         systemProperty("ide.mac.message.dialogs.as.sheets", "false")
         systemProperty("jb.privacy.policy.text", "<!--999.999-->")
         systemProperty("jb.consents.confirmation.enabled", "false")
+        jvmArgs = (jvmArgs ?: emptyList()) + listOf("-Xms2048m", "-Xmx2058m")
     }
 
     signPlugin {
