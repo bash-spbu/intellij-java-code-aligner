@@ -1,8 +1,8 @@
 # intellij-java-code-aligner
 
 ![Build](https://github.com/bash-spbu/intellij-java-code-aligner/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/17939-java-code-aligner.svg)](https://plugins.jetbrains.com/plugin/17939-java-code-aligner)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/17939-java-code-aligner.svg)](https://plugins.jetbrains.com/plugin/17939-java-code-aligner)
 
 ## Template ToDo list
 - [x] Create a new [IntelliJ Platform Plugin Template][template] project.
