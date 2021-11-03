@@ -4,9 +4,6 @@ package com.github.bashspbu.intellijjavacodealigner
 
 import com.github.bashspbu.intellijjavacodealigner.JavaAligningInlaysCollector.AlignCellType.*
 import com.github.bashspbu.intellijjavacodealigner.util.*
-import com.github.bashspbu.intellijjavacodealigner.util.getElementStartOffsetSkippingAnnotationsOnSeparateLines
-import com.github.bashspbu.intellijjavacodealigner.util.getElementLineNumber
-import com.github.bashspbu.intellijjavacodealigner.util.getOffsetFromLineStartSkippingAnnotationsOnSeparateLines
 import com.intellij.codeInsight.hints.InlayHintsCollector
 import com.intellij.codeInsight.hints.InlayHintsSink
 import com.intellij.openapi.editor.Document
@@ -340,9 +337,8 @@ class JavaAligningInlaysCollector(
         ABSTRACT,
         DEFAULT,
         STATIC,
-        FINAL,
+        MUTABILITY, // final or volatile
         TRANSIENT,
-        VOLATILE,
         SYNCHRONIZED,
         NATIVE,
         STRICTFP,
@@ -362,9 +358,9 @@ class JavaAligningInlaysCollector(
                 PsiModifier.ABSTRACT     -> ABSTRACT
                 PsiModifier.DEFAULT      -> DEFAULT
                 PsiModifier.STATIC       -> STATIC
-                PsiModifier.FINAL        -> FINAL
+                PsiModifier.FINAL        -> MUTABILITY
+                PsiModifier.VOLATILE     -> MUTABILITY
                 PsiModifier.TRANSIENT    -> TRANSIENT
-                PsiModifier.VOLATILE     -> VOLATILE
                 PsiModifier.SYNCHRONIZED -> SYNCHRONIZED
                 PsiModifier.NATIVE       -> NATIVE
                 PsiModifier.STRICTFP     -> STRICTFP
@@ -378,7 +374,7 @@ class JavaAligningInlaysCollector(
 
             val paramTypes = listOf(
                 VARIABLE_ANNOTATIONS,
-                FINAL,
+                MUTABILITY,
                 TYPE_ANNOTATIONS,
                 TYPE,
                 VARIABLE_NAME
@@ -386,7 +382,7 @@ class JavaAligningInlaysCollector(
 
             val localVarTypes = listOf(
                 VARIABLE_ANNOTATIONS,
-                FINAL,
+                MUTABILITY,
                 TYPE_ANNOTATIONS,
                 TYPE,
                 VARIABLE_NAME,
