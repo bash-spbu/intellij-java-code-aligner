@@ -4,14 +4,11 @@
 
 ## [Unreleased]
 
+## [1.0.2]
 ### Fixed
-
-- `final` and `volatile` field modifiers are now united to the same alignment column because they are mutual exclusive.
+-  finalvolatile
 
 ## [1.0.1]
-
 ### Added
-
 - Initial implementation, feel free reporting any found bugs or wanted features/additional settings to the GitHub repo
   issues.
-
